@@ -1,0 +1,28 @@
+version: "2"
+services:
+ ethereum-node:
+  image: parity/parity:stable-release
+  container_name: my-parity
+  working_dir: /parity/
+  command: --no-hardware-wallets --no-ui --no-warp --jsonrpc-interface all --jsonrpc-apis web3,eth,pubsub,net --jsonrpc-hosts all --ws-interface all --ws-apis web3,eth,pubsub,net --ws-hosts all --ws-origins all --base-path /io.parity.ethereum
+  ports:
+   - "127.0.0.1:8545:8545"
+   - "127.0.0.1:8546:8546"
+   - "127.0.0.1:8180:8180"
+   - "30303:30303"
+   - "30303:30303/udp"
+  volumes:
+   - /mnt/ssd:/io.parity.ethereum
+
+ ethereum-hc:
+  image: ethereum-hc:latest
+  container_name: ethereum-hc
+  environment:
+   - RPC_HOST=ethereum-node
+   - RPC_PORT=8545
+   - RPC_TIMEOUT=5
+   - HC_HOST=0.0.0.0
+  ports:
+   - "8082:8082"
+  links:
+   - "ethereum-node"
