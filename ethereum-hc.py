@@ -7,9 +7,9 @@ HC_HOST = os.getenv('HC_HOST', "127.0.0.1")
 HC_PORT = os.getenv('HC_PORT', 8082)
 
 RPC_HOST = os.getenv('RPC_HOST', '127.0.0.1')
-RPC_PORT = os.getenv('RPC_PORT', '8545')
+RPC_PORT = os.getenv('RPC_PORT', 8545)
 
-RPC_TIMEOUT = os.getenv('RPC_TIMEOUT', '2')
+RPC_TIMEOUT = os.getenv('RPC_TIMEOUT', 2)
 FAIL_CODE = os.getenv('RPC_FAIL_CODE', 500)
 
 
